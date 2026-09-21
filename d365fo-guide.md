@@ -82,13 +82,13 @@ set REPOS=<MetadataRoot>
   -metadata="%REPOS%" ^
   -compilermetadata="%PKG%" ^
   -referenceFolder="%PKG%" ^
-  -modelmodule=<MODELMODULE> ^
+  -referenceFolder="%REPOS%" ^
+  -modelmodule=FKACommon ^
   -appBase="%PKG%\bin" ^
-  -refPath="%REPOS%\<MODELMODULE>\bin" ^
-  -output="%REPOS%\<MODELMODULE>\bin" ^
-  -log="%REPOS%\<MODELMODULE>\BuildModelResult.log" ^
-  -xmllog="%REPOS%\<MODELMODULE>\BuildModelResult.xml" ^
-  -errorlog="%REPOS%\<MODELMODULE>\BuildModelResult.err.xml" ^
+  -refPath="%REPOS%\FKACommon\bin" ^
+  -output="%REPOS%\FKACommon\bin" ^
+  -log="%REPOS%\FKACommon\BuildModelResult.log" ^
+  -xmllog="%REPOS%\FKACommon\BuildModelResult.xml" ^
   -verbose
 ```
 
@@ -156,4 +156,4 @@ Each `<Diagnostic>` has: `DiagnosticType`, `Severity`, `Path`, `Line`, `Column`,
 4. Treat any new `BPRule*` finding introduced by the change as a blocker.
 5. Never silence a `Compile Error` with a BP suppression — fix the source first.
 
-BP rules are evaluated against **English** identifiers and **English + Norwegian** labels.
+BP rules are evaluated against **English** identifiers and **English + Norwegian** labels.

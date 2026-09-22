@@ -112,14 +112,15 @@ Each `<Diagnostic>` has: `DiagnosticType`, `Severity`, `Path`, `Line`, `Column`,
 ### Workflow after a code change
 
 1. Run `xppc.exe` for the affected module.
-2. Read `BuildModelResult.err.xml` — if `<Items />` the module compiles clean.
+2. Read `BuildModelResult.xml` and filter for `Severity = Error` or `Fatal` — if there are none, the module compiles clean.
 3. Otherwise extract `<Path>` + `<Line>` + `<Message>`, open the file in `AxClass/`, `AxTable/`, etc., and fix.
 4. Re-run and confirm the error is gone.
 5. Scan `BuildModelResult.log` for new `Compile Warning` / `Metadata Warning` lines.
 
 ```powershell
 # Quick error summary
-([xml](Get-Content "$REPOS\<MODELMODULE>\BuildModelResult.err.xml")).Diagnostics.Items.Diagnostic |
+([xml](Get-Content "$REPOS\<MODELMODULE>\BuildModelResult.xml")).Diagnostics.Items.Diagnostic |
+    Where-Object { $_.Severity -in 'Error','Fatal' } |
     Select-Object Severity, Path, Line, Moniker, Message | Format-Table -AutoSize
 ```
 

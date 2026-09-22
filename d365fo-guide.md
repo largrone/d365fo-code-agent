@@ -99,7 +99,6 @@ set REPOS=<MetadataRoot>
 | `-output` / `-refPath` | Where compiled module assemblies are written |
 | `-log` | Plain-text log, mirrors VS Output window |
 | `-xmllog` | Full structured log with all severities |
-| `-errorlog` | Errors-only XML log — parse this first |
 
 ### Reading the log files
 

@@ -106,7 +106,6 @@ Three artifacts are written next to the module after every build:
 
 - `BuildModelResult.log` — flat text, one issue per line. Quick `grep` target.
 - `BuildModelResult.xml` — full `<Diagnostics>` document, one `<Diagnostic>` per finding.
-- `BuildModelResult.err.xml` — same shape but only `Severity = Error/Fatal`. **Start here.**
 
 Each `<Diagnostic>` has: `DiagnosticType`, `Severity`, `Path`, `Line`, `Column`, `Moniker`, `Message`.
 
@@ -149,7 +148,7 @@ Each `<Diagnostic>` has: `DiagnosticType`, `Severity`, `Path`, `Line`, `Column`,
 
 ### Pre-PR loop
 
-1. Run `xppc.exe` — ensure `BuildModelResult.err.xml` is empty.
+1. Run `xppc.exe` — ensure `BuildModelResult.log` does not conatin errors.
 2. Run `xppbp.exe` with `-all`.
 3. Triage `BPCheckResult.xml` by `Severity` then `Moniker`. Fix naming-prefix violations, missing labels, public methods without TTSBegin/TTSCommit.
 4. Treat any new `BPRule*` finding introduced by the change as a blocker.
